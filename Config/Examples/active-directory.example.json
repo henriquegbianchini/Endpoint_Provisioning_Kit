@@ -1,0 +1,82 @@
+{
+  "Company": {
+    "Name": "AD_EXAMPLE",
+    "Description": "Generic public template. Keep environment-specific values in a local config file.",
+    "HostnamePrefix": "AD",
+    "DefaultDepartment": "IT",
+    "Departments": [
+      "IT"
+    ],
+    "ProductName": "Endpoint Provisioning Kit"
+  },
+  "Branding": {
+    "ProductName": "Endpoint Provisioning Kit",
+    "DisplayName": "Endpoint Provisioning Kit",
+    "ReportTitle": "Endpoint Provisioning Report"
+  },
+  "Hostname": {
+    "Pattern": "{PREFIX}-{TYPE}-{ASSET}",
+    "DefaultMachineType": "NOTE",
+    "AllowedTypes": [
+      "NOTE",
+      "DESK",
+      "VM",
+      "SRV",
+      "POS",
+      "TOTEM"
+    ],
+    "MaxLength": 15
+  },
+  "Domain": {
+    "Enabled": false,
+    "Name": "ad.example.invalid",
+    "OU": "OU=Endpoints,DC=example,DC=invalid",
+    "Workgroup": "WORKGROUP",
+    "Join": {
+      "Enabled": false,
+      "PromptForCredential": true,
+      "UseDesiredHostname": true,
+      "AllowRejoinFromDifferentDomain": false,
+      "RenameWhenAlreadyJoined": true
+    }
+  },
+  "Network": {
+    "UseDhcp": true,
+    "DnsPrimary": "",
+    "DnsSecondary": "",
+    "Proxy": ""
+  },
+  "Security": {
+    "AllowRootCertificateInstall": false,
+    "RequireCertificateConfirmation": true,
+    "AllowHashUpdateInOperationalModes": false,
+    "RequireInstallerHashValidation": true,
+    "RequireDigitalSignatureValidation": false
+  },
+  "Runtime": {
+    "AutoRebootIfNeeded": false,
+    "RequireAllowRebootParameter": true,
+    "CreateResumeTask": true,
+    "RunDomainCheckInComplete": true,
+    "PromptFixMissingAfterAudit": false,
+    "LogRetentionDays": 30
+  },
+  "Apps": {
+    "InstallDefaultApps": false,
+    "Catalog": "Config/apps.json",
+    "Include": [],
+    "Exclude": []
+  },
+  "Certificates": {
+    "Install": false,
+    "Path": "Certificates",
+    "StoreName": "Root",
+    "StoreLocation": "LocalMachine"
+  },
+  "Reports": {
+    "OutputPath": "Runtime/Reports",
+    "GenerateHtml": true,
+    "GenerateTxt": true,
+    "GenerateEvidenceZip": true
+  }
+}

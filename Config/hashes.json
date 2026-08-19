@@ -1,0 +1,22 @@
+{
+  "SchemaVersion": "1.0.0",
+  "GeneratedBy": "Endpoint Provisioning Kit public template",
+  "GeneratedAt": "2026-08-19T19:48:00Z",
+  "AlgorithmDefault": "SHA256",
+  "Policy": {
+    "ValidateAtStart": true,
+    "StrictHashesRecommended": true,
+    "BlockInstallOnHashErrorRecommended": true,
+    "Behavior": "After selecting Apps.Include and placing approved installers, run UPDATEHASHES to generate the expected hashes. Strict policy can block installers without an expected hash.",
+    "Approval": "Do not version installer binaries. Version only the hash catalog after validating each installer source.",
+    "InstallersIncludedInRepository": false,
+    "CertificateFilesIncludedInRepository": false
+  },
+  "Summary": {
+    "Updated": 0,
+    "MissingWithoutHash": 0,
+    "InstallerBinariesIncluded": 0,
+    "CertificateFilesIncluded": 0
+  },
+  "Installers": {}
+}

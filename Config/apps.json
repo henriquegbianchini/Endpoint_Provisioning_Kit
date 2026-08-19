@@ -1,0 +1,561 @@
+[
+  {
+    "Id": "chrome",
+    "Name": "Google Chrome",
+    "Category": "Browsers",
+    "Installer": "Browsers/ChromeSetup.exe",
+    "Type": "EXE",
+    "Arguments": "/silent /install",
+    "UpdateIfOutdated": false,
+    "SuccessExitCodes": [
+      0,
+      3010
+    ],
+    "Detection": {
+      "RegistryDisplayNames": [
+        "Google Chrome"
+      ],
+      "Executables": [
+        "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
+      ],
+      "Services": []
+    },
+    "RebootExitCodes": [
+      3010,
+      1641
+    ]
+  },
+  {
+    "Id": "firefox",
+    "Name": "Mozilla Firefox",
+    "Category": "Browsers",
+    "Installer": "Browsers/FirefoxSetup.exe",
+    "Type": "EXE",
+    "Arguments": "/S",
+    "UpdateIfOutdated": false,
+    "SuccessExitCodes": [
+      0,
+      3010
+    ],
+    "Detection": {
+      "RegistryDisplayNames": [
+        "Mozilla Firefox"
+      ],
+      "Executables": [
+        "C:\\Program Files\\Mozilla Firefox\\firefox.exe",
+        "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe"
+      ],
+      "Services": []
+    },
+    "RebootExitCodes": [
+      3010,
+      1641
+    ]
+  },
+  {
+    "Id": "edge_enterprise",
+    "Name": "Microsoft Edge Enterprise",
+    "Category": "Browsers",
+    "Installer": "Browsers/MicrosoftEdgeEnterpriseX64.msi",
+    "Type": "MSI",
+    "Arguments": "/qn /norestart",
+    "UpdateIfOutdated": false,
+    "SuccessExitCodes": [
+      0,
+      3010
+    ],
+    "Detection": {
+      "RegistryDisplayNames": [
+        "Microsoft Edge"
+      ],
+      "Executables": [
+        "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe"
+      ],
+      "Services": []
+    },
+    "RebootExitCodes": [
+      3010,
+      1641
+    ]
+  },
+  {
+    "Id": "office",
+    "Name": "Microsoft 365 Apps / Office",
+    "Category": "Office",
+    "Installer": "Office/OfficeSetup.exe",
+    "Type": "EXE",
+    "Arguments": "/configure \"Office/OfficeConfig.xml\"",
+    "OfficeConfiguration": "Office/OfficeConfig.xml",
+    "UpdateIfOutdated": false,
+    "SuccessExitCodes": [
+      0,
+      3010,
+      1641
+    ],
+    "Detection": {
+      "RegistryDisplayNames": [
+        "Microsoft 365 Apps",
+        "Microsoft 365",
+        "Microsoft Office",
+        "Office 16",
+        "Office LTSC",
+        "Word",
+        "Microsoft Word"
+      ],
+      "Executables": [
+        "C:\\Program Files\\Microsoft Office\\root\\Office16\\WINWORD.EXE",
+        "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\WINWORD.EXE",
+        "C:\\Program Files\\Microsoft Office\\root\\Office16\\EXCEL.EXE",
+        "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\EXCEL.EXE"
+      ],
+      "Services": [
+        "ClickToRunSvc"
+      ]
+    },
+    "RebootExitCodes": [
+      3010,
+      1641
+    ]
+  },
+  {
+    "Id": "teams",
+    "Name": "Microsoft Teams",
+    "Category": "Communication",
+    "Installer": "Communication/TeamsSetup.exe",
+    "Type": "EXE",
+    "Arguments": "-s",
+    "UpdateIfOutdated": false,
+    "SuccessExitCodes": [
+      0,
+      3010
+    ],
+    "Detection": {
+      "RegistryDisplayNames": [
+        "Microsoft Teams"
+      ],
+      "Executables": [
+        "C:\\Program Files\\WindowsApps\\MSTeams*\\ms-teams.exe",
+        "C:\\Users\\Public\\Desktop\\Microsoft Teams.lnk"
+      ],
+      "Services": []
+    },
+    "RebootExitCodes": [
+      3010,
+      1641
+    ]
+  },
+  {
+    "Id": "adobe_reader",
+    "Name": "Adobe Acrobat Reader",
+    "Category": "PDF",
+    "Installer": "PDF/AcroRdrDCx64.exe",
+    "Type": "EXE",
+    "Arguments": "/sAll /rs /rps /msi EULA_ACCEPT=YES",
+    "UpdateIfOutdated": false,
+    "SuccessExitCodes": [
+      0,
+      3010
+    ],
+    "Detection": {
+      "RegistryDisplayNames": [
+        "Adobe Acrobat Reader",
+        "Adobe Reader"
+      ],
+      "Executables": [
+        "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\Acrobat.exe",
+        "C:\\Program Files (x86)\\Adobe\\Acrobat Reader DC\\Reader\\AcroRd32.exe"
+      ],
+      "Services": []
+    },
+    "RebootExitCodes": [
+      3010,
+      1641
+    ]
+  },
+  {
+    "Id": "7zip",
+    "Name": "7-Zip",
+    "Category": "Compression",
+    "Installer": "Compression/7z-x64.exe",
+    "Type": "EXE",
+    "Arguments": "/S",
+    "UpdateIfOutdated": false,
+    "SuccessExitCodes": [
+      0,
+      3010
+    ],
+    "Detection": {
+      "RegistryDisplayNames": [
+        "7-Zip"
+      ],
+      "Executables": [
+        "C:\\Program Files\\7-Zip\\7zFM.exe",
+        "C:\\Program Files (x86)\\7-Zip\\7zFM.exe"
+      ],
+      "Services": []
+    },
+    "RebootExitCodes": [
+      3010,
+      1641
+    ]
+  },
+  {
+    "Id": "anydesk",
+    "Name": "AnyDesk",
+    "Category": "RemoteSupport",
+    "Installer": "RemoteSupport/AnyDesk.exe",
+    "Type": "EXE",
+    "Arguments": "--install \"C:\\Program Files (x86)\\AnyDesk\" --start-with-win --create-desktop-icon --silent",
+    "UpdateIfOutdated": false,
+    "SuccessExitCodes": [
+      0,
+      3010,
+      1641
+    ],
+    "Detection": {
+      "RegistryDisplayNames": [
+        "AnyDesk",
+        "AnyDesk MSI"
+      ],
+      "Executables": [
+        "C:\\Program Files\\AnyDesk\\AnyDesk.exe",
+        "C:\\Program Files (x86)\\AnyDesk\\AnyDesk.exe",
+        "C:\\ProgramData\\AnyDesk\\AnyDesk.exe"
+      ],
+      "Services": [
+        "AnyDesk",
+        "AnyDesk Service"
+      ]
+    },
+    "RebootExitCodes": [
+      3010,
+      1641
+    ]
+  },
+  {
+    "Id": "rustdesk",
+    "Name": "RustDesk",
+    "Category": "RemoteSupport",
+    "Installer": "RemoteSupport/RustDesk.exe",
+    "Type": "EXE",
+    "Arguments": "--silent-install",
+    "UpdateIfOutdated": false,
+    "SuccessExitCodes": [
+      0,
+      3010
+    ],
+    "Detection": {
+      "RegistryDisplayNames": [
+        "RustDesk"
+      ],
+      "Executables": [
+        "C:\\Program Files\\RustDesk\\RustDesk.exe",
+        "C:\\Program Files (x86)\\RustDesk\\RustDesk.exe"
+      ],
+      "Services": [
+        "RustDesk"
+      ]
+    },
+    "RebootExitCodes": [
+      3010,
+      1641
+    ]
+  },
+  {
+    "Id": "globalprotect",
+    "Name": "GlobalProtect",
+    "Category": "VPN",
+    "Installer": "VPN/GlobalProtect64.msi",
+    "Type": "MSI",
+    "Arguments": "/qn /norestart",
+    "UpdateIfOutdated": false,
+    "SuccessExitCodes": [
+      0,
+      3010
+    ],
+    "Detection": {
+      "RegistryDisplayNames": [
+        "GlobalProtect"
+      ],
+      "Executables": [
+        "C:\\Program Files\\Palo Alto Networks\\GlobalProtect\\PanGPUI.exe",
+        "C:\\Program Files (x86)\\Palo Alto Networks\\GlobalProtect\\PanGPUI.exe"
+      ],
+      "Services": [
+        "PanGPS"
+      ]
+    },
+    "RebootExitCodes": [
+      3010,
+      1641
+    ]
+  },
+  {
+    "Id": "openvpn_connect",
+    "Name": "OpenVPN Connect",
+    "Category": "VPN",
+    "Installer": "VPN/OpenVPNConnect.msi",
+    "Type": "MSI",
+    "Arguments": "/qn /norestart",
+    "UpdateIfOutdated": false,
+    "SuccessExitCodes": [
+      0,
+      3010
+    ],
+    "Detection": {
+      "RegistryDisplayNames": [
+        "OpenVPN Connect"
+      ],
+      "Executables": [
+        "C:\\Program Files\\OpenVPN Connect\\OpenVPNConnect.exe"
+      ],
+      "Services": [
+        "OVPNConnectorService"
+      ]
+    },
+    "RebootExitCodes": [
+      3010,
+      1641
+    ]
+  },
+  {
+    "Id": "keepassxc",
+    "Name": "KeePassXC",
+    "Category": "PasswordManagers",
+    "Installer": "PasswordManagers/KeePassXC.msi",
+    "Type": "MSI",
+    "Arguments": "/qn /norestart",
+    "UpdateIfOutdated": false,
+    "SuccessExitCodes": [
+      0,
+      3010
+    ],
+    "Detection": {
+      "RegistryDisplayNames": [
+        "KeePassXC"
+      ],
+      "Executables": [
+        "C:\\Program Files\\KeePassXC\\KeePassXC.exe",
+        "C:\\Program Files (x86)\\KeePassXC\\KeePassXC.exe"
+      ],
+      "Services": []
+    },
+    "RebootExitCodes": [
+      3010,
+      1641
+    ]
+  },
+  {
+    "Id": "endpoint_security",
+    "Name": "Endpoint Security Agent",
+    "Category": "Security",
+    "Installer": "Security/EndpointSecurityAgent.msi",
+    "Type": "MSI",
+    "Arguments": "/qn /norestart",
+    "UpdateIfOutdated": false,
+    "SuccessExitCodes": [
+      0,
+      3010
+    ],
+    "Detection": {
+      "RegistryDisplayNames": [
+        "Endpoint Security",
+        "Antivirus Agent",
+        "EDR Agent"
+      ],
+      "Executables": [],
+      "Services": [
+        "EndpointSecurityAgent",
+        "EDRAgent"
+      ]
+    },
+    "RebootExitCodes": [
+      3010,
+      1641
+    ]
+  },
+  {
+    "Id": "vc_redist_x64",
+    "Name": "Microsoft Visual C++ Redistributable x64",
+    "Category": "Runtimes",
+    "Installer": "Runtimes/VC_redist.x64.exe",
+    "Type": "EXE",
+    "Arguments": "/install /quiet /norestart",
+    "UpdateIfOutdated": false,
+    "SuccessExitCodes": [
+      0,
+      3010
+    ],
+    "Detection": {
+      "RegistryDisplayNames": [
+        "Microsoft Visual C++",
+        "Redistributable"
+      ],
+      "Executables": [],
+      "Services": []
+    },
+    "RebootExitCodes": [
+      3010,
+      1641
+    ]
+  },
+  {
+    "Id": "dotnet_desktop_runtime",
+    "Name": ".NET Desktop Runtime",
+    "Category": "Runtimes",
+    "Installer": "Runtimes/windowsdesktop-runtime.exe",
+    "Type": "EXE",
+    "Arguments": "/install /quiet /norestart",
+    "UpdateIfOutdated": false,
+    "SuccessExitCodes": [
+      0,
+      3010
+    ],
+    "Detection": {
+      "RegistryDisplayNames": [
+        "Microsoft Windows Desktop Runtime",
+        "Microsoft .NET Runtime"
+      ],
+      "Executables": [],
+      "Services": []
+    },
+    "RebootExitCodes": [
+      3010,
+      1641
+    ]
+  },
+  {
+    "Id": "erp_client",
+    "Name": "ERP Client",
+    "Category": "ERP",
+    "Installer": "ERP/ERPClientSetup.exe",
+    "Type": "EXE",
+    "Arguments": "/silent",
+    "UpdateIfOutdated": false,
+    "SuccessExitCodes": [
+      0,
+      3010
+    ],
+    "Detection": {
+      "RegistryDisplayNames": [
+        "ERP Client"
+      ],
+      "Executables": [
+        "C:\\Program Files\\ERP Client\\ERPClient.exe"
+      ],
+      "Services": []
+    },
+    "RebootExitCodes": [
+      3010,
+      1641
+    ]
+  },
+  {
+    "Id": "crm_client",
+    "Name": "CRM Client",
+    "Category": "CRM",
+    "Installer": "CRM/CRMClientSetup.exe",
+    "Type": "EXE",
+    "Arguments": "/silent",
+    "UpdateIfOutdated": false,
+    "SuccessExitCodes": [
+      0,
+      3010
+    ],
+    "Detection": {
+      "RegistryDisplayNames": [
+        "CRM Client"
+      ],
+      "Executables": [
+        "C:\\Program Files\\CRM Client\\CRMClient.exe"
+      ],
+      "Services": []
+    },
+    "RebootExitCodes": [
+      3010,
+      1641
+    ]
+  },
+  {
+    "Id": "printer_agent",
+    "Name": "Printer Agent",
+    "Category": "Printers",
+    "Installer": "Printers/PrinterAgentSetup.exe",
+    "Type": "EXE",
+    "Arguments": "/quiet /norestart",
+    "UpdateIfOutdated": false,
+    "SuccessExitCodes": [
+      0,
+      3010
+    ],
+    "Detection": {
+      "RegistryDisplayNames": [
+        "Printer Agent",
+        "Print Client"
+      ],
+      "Executables": [],
+      "Services": [
+        "PrinterAgent",
+        "PrintClient"
+      ]
+    },
+    "RebootExitCodes": [
+      3010,
+      1641
+    ]
+  },
+  {
+    "Id": "backup_agent",
+    "Name": "Backup Agent",
+    "Category": "Backup",
+    "Installer": "Backup/BackupAgentSetup.exe",
+    "Type": "EXE",
+    "Arguments": "/quiet /norestart",
+    "UpdateIfOutdated": false,
+    "SuccessExitCodes": [
+      0,
+      3010
+    ],
+    "Detection": {
+      "RegistryDisplayNames": [
+        "Backup Agent"
+      ],
+      "Executables": [],
+      "Services": [
+        "BackupAgent"
+      ]
+    },
+    "RebootExitCodes": [
+      3010,
+      1641
+    ]
+  },
+  {
+    "Id": "monitoring_agent",
+    "Name": "Monitoring Agent",
+    "Category": "Monitoring",
+    "Installer": "Monitoring/MonitoringAgent.msi",
+    "Type": "MSI",
+    "Arguments": "/qn /norestart",
+    "UpdateIfOutdated": false,
+    "SuccessExitCodes": [
+      0,
+      3010
+    ],
+    "Detection": {
+      "RegistryDisplayNames": [
+        "Monitoring Agent"
+      ],
+      "Executables": [],
+      "Services": [
+        "MonitoringAgent"
+      ]
+    },
+    "RebootExitCodes": [
+      3010,
+      1641
+    ]
+  }
+]

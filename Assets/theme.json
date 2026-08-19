@@ -1,0 +1,55 @@
+{
+  "Name": "Endpoint Provisioning Kit Console",
+  "Version": "1.0.0",
+  "Description": "Generic console theme for endpoint provisioning and audit.",
+  "Style": "ascii-safe-console",
+  "LineChar": "=",
+  "SectionChar": "-",
+  "MenuBorderChar": "-",
+  "ConsoleColors": {
+    "Accent": "Cyan",
+    "Line": "DarkCyan",
+    "Section": "White",
+    "Title": "Cyan",
+    "Subtitle": "Gray",
+    "Text": "Gray",
+    "Muted": "DarkGray",
+    "Menu": "Cyan",
+    "InputError": "Red",
+    "OK": "Green",
+    "RUN": "Gray",
+    "TODO": "Yellow",
+    "WRN": "Yellow",
+    "ERR": "Red",
+    "DEBUG": "DarkGray"
+  },
+  "Banner": {
+    "UseBannerFile": true,
+    "File": "banner.txt",
+    "FallbackTitle": "EPK",
+    "FallbackSubtitle": "Enterprise Endpoint Preparation and Audit Console"
+  },
+  "LogPresentation": {
+    "ShowEventCode": true,
+    "TrimLongPathsOnScreen": true
+  },
+  "Documentation": "Tema compatível com Windows PowerShell 5.1. Usa caracteres ASCII para evitar mojibake quando scripts UTF-8 forem lidos como ANSI.",
+  "Validation": {
+    "RequiredKeys": [
+      "Name",
+      "Version",
+      "LineChar",
+      "SectionChar",
+      "ConsoleColors",
+      "Banner"
+    ],
+    "SupportedColorSource": "Write-Host -ForegroundColor"
+  },
+  "MenuStyle": {
+    "UseUnicodeBox": false,
+    "TitleWidth": 24,
+    "ModeWidth": 14,
+    "DescriptionWidth": 66,
+    "SummaryEnabled": true
+  }
+}

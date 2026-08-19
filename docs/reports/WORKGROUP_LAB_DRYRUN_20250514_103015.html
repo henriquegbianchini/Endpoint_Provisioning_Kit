@@ -1,0 +1,80 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Endpoint Provisioning Report</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;background:#0f172a;color:#e5e7eb;padding:32px}
+.card{max-width:1100px;margin:auto;background:#111827;border:1px solid #334155;border-radius:18px;padding:28px}
+h1{color:#38bdf8;margin-top:0}
+pre{white-space:pre-wrap;background:#020617;border-radius:12px;padding:18px}
+.log{background:#1e293b;border-radius:10px;padding:10px 14px;color:#cbd5e1}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>Endpoint Provisioning Report</h1>
+<p class="log"><strong>Log:</strong> C:\Lab\EPK\EndpointProvisioningKit\Runtime\Logs\WORKGROUP_LAB_DRYRUN_20250514_103015.log</p>
+<pre>============================================================
+Endpoint Provisioning Report
+============================================================
+Mode              : DRYRUN
+Generated at      : 14/05/2025 10:30:15
+Duration          : 00:00:03.1840000
+Version           : 1.0.0
+Product           : Endpoint Provisioning Kit
+Company           : EXAMPLE_ORG
+Company profile   : WORKGROUP_LAB
+Expected target   : WORKGROUP WORKGROUP
+
+SUMMARY
+Apps              : 0/0
+Certificates      : 0/0
+Hashes            : 0/0
+Hashes at start   : True
+Hash start at     : 2025-05-14T10:30:12
+Hash finished at  : 2025-05-14T10:30:12
+Hashes at end     : False
+Validate hashes   : True
+Block by hash     : True
+Reboot required   : False
+Technical evidence: C:\Lab\EPK\EndpointProvisioningKit\Runtime\Evidence\EVIDENCE_WORKGROUP_LAB_DRYRUN_20250514_103015.zip
+
+SYSTEM
+Hostname          : LAB-VM-001
+Desired hostname : LAB-NOTE-0001
+Domain/workgroup  : WORKGROUP
+Part of AD domain : False
+Expected target   : WORKGROUP WORKGROUP
+Target status     : OK
+IP                : 10.0.2.15
+User              : LAB-VM-001\labuser
+
+HARDWARE
+Serial            : VM-LAB-2024-001
+CPU               : Intel Core i7-8650U CPU @ 1.90GHz
+RAM               : 4 GB @ 2400 MHz
+Disk              : NVMe Virtual Disk (SSD, 60 GB)
+
+APPLICATIONS
+
+HASHES
+
+
+CERTIFICATES
+No certificate files found
+
+PENDING ITEMS
+Correctable total: 1
+HOST - current=LAB-VM-001; desired=LAB-NOTE-0001
+
+ACTIONS
+- Installer SHA-256 validation completed
+- Local Windows validation completed
+- Technical evidence generated: C:\Lab\EPK\EndpointProvisioningKit\Runtime\Evidence\EVIDENCE_WORKGROUP_LAB_DRYRUN_20250514_103015.zip
+
+Log               : C:\Lab\EPK\EndpointProvisioningKit\Runtime\Logs\WORKGROUP_LAB_DRYRUN_20250514_103015.log
+============================================================</pre>
+</div>
+</body>
+</html>

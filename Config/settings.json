@@ -1,0 +1,104 @@
+{
+  "Version": "1.0.0",
+  "ProductName": "Endpoint Provisioning Kit",
+  "DisplayName": "Endpoint Provisioning Kit",
+  "ReportTitle": "Machine Preparation Report",
+  "DefaultCompanyConfig": "Config/company.json",
+  "DefaultMode": "VALIDATE",
+  "Hostname": {
+    "Prefix": "PC",
+    "Pattern": "{PREFIX}-{TYPE}-{SERIAL}",
+    "DefaultMachineType": "NOTE",
+    "AllowedTypes": [
+      "NOTE",
+      "DESK",
+      "VM",
+      "SRV",
+      "POS",
+      "TOTEM"
+    ],
+    "MaxLength": 15
+  },
+  "Domain": {
+    "Enabled": false,
+    "Name": "",
+    "OU": "",
+    "Workgroup": "WORKGROUP"
+  },
+  "Paths": {
+    "Config": "Config",
+    "Modules": "Modules",
+    "Assets": "Assets",
+    "Installers": "Installers",
+    "Certificates": "Certificates",
+    "Logs": "Runtime/Logs",
+    "Reports": "Runtime/Reports",
+    "Temp": "Runtime/Temp",
+    "Backup": "Runtime/Backups",
+    "Hashes": "Config/hashes.json",
+    "Evidence": "Runtime/Evidence"
+  },
+  "Runtime": {
+    "RequireAdmin": true,
+    "OpenReportFileAtEnd": false,
+    "GenerateTxtReport": true,
+    "GenerateHtmlReport": true,
+    "CreateBackupBeforeComplete": true,
+    "ValidateHashes": true,
+    "StrictHashes": true,
+    "DefaultSilent": false,
+    "PostInstallDelaySeconds": 2,
+    "MaxBackups": 10,
+    "BlockOnUnsupportedEdition": false,
+    "CacheDetections": true,
+    "BlockInstallOnHashError": true,
+    "InstallTimeoutSeconds": 1800,
+    "HashAlgorithm": "SHA256",
+    "VerificationTimeoutSeconds": 180,
+    "VerificationRetrySeconds": 5,
+    "ResumeAfterReboot": true,
+    "AutoRebootIfNeeded": false,
+    "RequireAllowRebootParameter": true,
+    "ResumeMode": "AUDIT",
+    "RebootDelaySeconds": 15,
+    "PromptFixMissingAfterAudit": false,
+    "RunDomainCheckInComplete": true,
+    "HashValidationAtStartModes": [
+      "COMPLETE",
+      "APPLY",
+      "AUDIT",
+      "REPORT",
+      "VALIDATE",
+      "DRYRUN",
+      "HASHES"
+    ],
+    "CollectEvidencePackage": true,
+    "EvidenceIncludeConfigs": true,
+    "EvidenceIncludeLogs": true,
+    "EvidenceIncludeReports": true,
+    "EvidenceIncludeInstallerMetadata": true,
+    "AllowOperatorHashCatalogUpdate": true,
+    "AllowHashUpdateInOperationalModes": false,
+    "HashCatalogUpdateModes": [
+      "UPDATEHASHES",
+      "GENERATEHASHES"
+    ],
+    "AutoGenerateHashCatalogOnOperationalModes": false,
+    "AutoGenerateHashCatalogModes": []
+  },
+  "Validation": {
+    "AssetRegex": "^[A-Za-z0-9-]{1,12}$",
+    "SupportedWindowsEditions": [
+      "Pro",
+      "Enterprise",
+      "Education"
+    ]
+  },
+  "Certificates": {
+    "StoreName": "Root",
+    "StoreLocation": "LocalMachine",
+    "RequireConfirmation": true,
+    "AllowRootCertificateInstall": false,
+    "AllowedSubjectContains": []
+  }
+}

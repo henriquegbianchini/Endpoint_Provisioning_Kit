@@ -1,0 +1,307 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/endpoint-provisioning-kit/company.schema.json",
+  "title": "Endpoint Provisioning Kit Company Configuration",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "Company",
+    "Branding",
+    "Hostname",
+    "Domain",
+    "Network",
+    "Security",
+    "Runtime",
+    "Apps",
+    "Certificates",
+    "Reports"
+  ],
+  "properties": {
+    "Company": {
+      "type": "object",
+      "required": [
+        "Name",
+        "HostnamePrefix",
+        "DefaultDepartment",
+        "Departments"
+      ],
+      "properties": {
+        "Name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "Description": {
+          "type": "string"
+        },
+        "HostnamePrefix": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9-]+$"
+        },
+        "DefaultDepartment": {
+          "type": "string"
+        },
+        "Departments": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "Branding": {
+      "type": "object",
+      "required": [
+        "ProductName",
+        "DisplayName",
+        "ReportTitle"
+      ],
+      "properties": {
+        "ProductName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "DisplayName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ReportTitle": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "Hostname": {
+      "type": "object",
+      "required": [
+        "Pattern",
+        "DefaultMachineType",
+        "AllowedTypes",
+        "MaxLength"
+      ],
+      "properties": {
+        "Pattern": {
+          "type": "string",
+          "minLength": 1
+        },
+        "DefaultMachineType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "AllowedTypes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "MaxLength": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 15
+        }
+      }
+    },
+    "Domain": {
+      "type": "object",
+      "required": [
+        "Enabled",
+        "Name",
+        "OU",
+        "Workgroup"
+      ],
+      "properties": {
+        "Enabled": {
+          "type": "boolean"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "OU": {
+          "type": "string"
+        },
+        "Workgroup": {
+          "type": "string"
+        },
+        "Join": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "Enabled": {
+              "type": "boolean"
+            },
+            "PromptForCredential": {
+              "type": "boolean"
+            },
+            "UseDesiredHostname": {
+              "type": "boolean"
+            },
+            "AllowRejoinFromDifferentDomain": {
+              "type": "boolean"
+            },
+            "RenameWhenAlreadyJoined": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "Network": {
+      "type": "object",
+      "required": [
+        "UseDhcp",
+        "DnsPrimary",
+        "DnsSecondary",
+        "Proxy"
+      ],
+      "properties": {
+        "UseDhcp": {
+          "type": "boolean"
+        },
+        "DnsPrimary": {
+          "type": "string"
+        },
+        "DnsSecondary": {
+          "type": "string"
+        },
+        "Proxy": {
+          "type": "string"
+        }
+      }
+    },
+    "Security": {
+      "type": "object",
+      "required": [
+        "AllowRootCertificateInstall",
+        "RequireCertificateConfirmation",
+        "AllowHashUpdateInOperationalModes",
+        "RequireInstallerHashValidation",
+        "RequireDigitalSignatureValidation"
+      ],
+      "properties": {
+        "AllowRootCertificateInstall": {
+          "type": "boolean",
+          "const": false
+        },
+        "RequireCertificateConfirmation": {
+          "type": "boolean"
+        },
+        "AllowHashUpdateInOperationalModes": {
+          "type": "boolean",
+          "const": false
+        },
+        "RequireInstallerHashValidation": {
+          "type": "boolean"
+        },
+        "RequireDigitalSignatureValidation": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Runtime": {
+      "type": "object",
+      "required": [
+        "AutoRebootIfNeeded",
+        "RequireAllowRebootParameter",
+        "CreateResumeTask",
+        "LogRetentionDays"
+      ],
+      "properties": {
+        "AutoRebootIfNeeded": {
+          "type": "boolean"
+        },
+        "RequireAllowRebootParameter": {
+          "type": "boolean"
+        },
+        "CreateResumeTask": {
+          "type": "boolean"
+        },
+        "LogRetentionDays": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "Apps": {
+      "type": "object",
+      "required": [
+        "InstallDefaultApps",
+        "Catalog",
+        "Include",
+        "Exclude"
+      ],
+      "properties": {
+        "InstallDefaultApps": {
+          "type": "boolean"
+        },
+        "Catalog": {
+          "type": "string",
+          "minLength": 1
+        },
+        "Include": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Exclude": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Certificates": {
+      "type": "object",
+      "required": [
+        "Install",
+        "Path",
+        "StoreName",
+        "StoreLocation"
+      ],
+      "properties": {
+        "Install": {
+          "type": "boolean"
+        },
+        "Path": {
+          "type": "string"
+        },
+        "StoreName": {
+          "type": "string"
+        },
+        "StoreLocation": {
+          "type": "string"
+        }
+      }
+    },
+    "Reports": {
+      "type": "object",
+      "required": [
+        "OutputPath",
+        "GenerateHtml",
+        "GenerateTxt",
+        "GenerateEvidenceZip"
+      ],
+      "properties": {
+        "OutputPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "GenerateHtml": {
+          "type": "boolean"
+        },
+        "GenerateTxt": {
+          "type": "boolean"
+        },
+        "GenerateEvidenceZip": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

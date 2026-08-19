@@ -1,0 +1,44 @@
+[
+  {
+    "Id": "0",
+    "Title": "Exit",
+    "Mode": "EXIT",
+    "Description": "Close the console without running an operation."
+  },
+  {
+    "Id": "1",
+    "Title": "Prepare Endpoint",
+    "Mode": "COMPLETE",
+    "Description": "Validate integrity, back up and install missing components."
+  },
+  {
+    "Id": "2",
+    "Title": "Local Audit",
+    "Mode": "AUDIT",
+    "Description": "Audit Windows, applications, certificates, hashes and produce reports."
+  },
+  {
+    "Id": "3",
+    "Title": "Dry Run",
+    "Mode": "DRYRUN",
+    "Description": "Validate hashes and simulate preparation without changing Windows."
+  },
+  {
+    "Id": "4",
+    "Title": "Update Hash Catalog",
+    "Mode": "UPDATEHASHES",
+    "Description": "Manually recalculate SHA-256 entries for installer files."
+  },
+  {
+    "Id": "5",
+    "Title": "Validate Hashes",
+    "Mode": "HASHES",
+    "Description": "Check installer paths and SHA-256 catalog integrity."
+  },
+  {
+    "Id": "6",
+    "Title": "Validate Only",
+    "Mode": "VALIDATE",
+    "Description": "Run read-only structure, Windows, hash and pending checks."
+  }
+]

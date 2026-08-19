@@ -1,0 +1,28 @@
+{
+  "Title": "Endpoint Provisioning Kit",
+  "Subtitle": "Public endpoint provisioning template",
+  "LineWidth": 112,
+  "Codes": {
+    "Levels": {
+      "OK": "Success",
+      "RUN": "Process",
+      "TODO": "Pending",
+      "WRN": "Warning",
+      "ERR": "Error"
+    },
+    "Areas": {
+      "CORE": "Core",
+      "APP": "Apps",
+      "CERT": "Certificates",
+      "HOST": "Hostname",
+      "DOM": "Domain",
+      "AUD": "Audit",
+      "REP": "Report",
+      "BKP": "Backup",
+      "HASH": "Hash",
+      "WIN": "Windows",
+      "BOOT": "Boot/Reboot",
+      "MENU": "Menu"
+    }
+  }
+}
