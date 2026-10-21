@@ -312,3 +312,18 @@ Then confirm that you are not committing:
 - no secrets in source control.
 
 This repository is a reusable endpoint-provisioning template, not a replacement for Intune, MECM/SCCM, GPO, RMM or a secrets-management platform.
+
+## Free NOC/SOC home lab
+
+A practical, isolated NOC + SOC lab for 38 GiB of available RAM is documented in
+[docs/free-noc-soc-lab.md](docs/free-noc-soc-lab.md). It combines Samba AD, Zabbix,
+Wazuh, Linux test endpoints and an **optional** licensed/evaluation Windows test VM.
+
+The [Wazuh integration templates](Integrations/Wazuh/) parse EPK `Runtime/Logs/*.log`
+events into lab alerts (errors/warnings). They must be verified using
+`wazuh-logtest` on a running Wazuh server before use outside the lab.
+
+Read-only CI checks on Windows use
+[GitHub Actions](.github/workflows/static-check.yml) for JSON/PowerShell static validation,
+Wazuh integration syntax, EPK `VALIDATE`, and EPK `DRYRUN`. They **do not**
+exercise a real Active Directory join, the Wazuh manager, or endpoint installations.
