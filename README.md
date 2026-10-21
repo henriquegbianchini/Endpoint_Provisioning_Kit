@@ -313,17 +313,17 @@ Then confirm that you are not committing:
 
 This repository is a reusable endpoint-provisioning template, not a replacement for Intune, MECM/SCCM, GPO, RMM or a secrets-management platform.
 
-## Free NOC/SOC home lab
+## Free AD + NOC home lab (VMs + Docker)
 
-A practical, isolated NOC + SOC lab for 38 GiB of available RAM is documented in
-[docs/free-noc-soc-lab.md](docs/free-noc-soc-lab.md). It combines Samba AD, Zabbix,
-Wazuh, Linux test endpoints and an **optional** licensed/evaluation Windows test VM.
+See [docs/noc-lab-vm-docker.md](docs/noc-lab-vm-docker.md) for a **NOC-only** learning lab
+using a Samba Active Directory controller in a dedicated Debian VM, an Ubuntu
+Server VM running the [Zabbix + PostgreSQL + Uptime Kuma Docker Compose stack](docker/noc/compose.yaml),
+an optional Grafana OSS profile, plus Linux/Windows test endpoints.
 
-The [Wazuh integration templates](Integrations/Wazuh/) parse EPK `Runtime/Logs/*.log`
-events into lab alerts (errors/warnings). They must be verified using
-`wazuh-logtest` on a running Wazuh server before use outside the lab.
+The lab is sized around **18 GiB of guest RAM** from an estimated 38 GiB free,
+but final sizing depends on host OS, storage and workload. Windows testing
+requires a valid license or permitted evaluation.
 
-Read-only CI checks on Windows use
-[GitHub Actions](.github/workflows/static-check.yml) for JSON/PowerShell static validation,
-Wazuh integration syntax, EPK `VALIDATE`, and EPK `DRYRUN`. They **do not**
-exercise a real Active Directory join, the Wazuh manager, or endpoint installations.
+Automated [read-only CI](.github/workflows/static-check.yml) runs EPK static
+validation, `VALIDATE`, `DRYRUN`, and checks Compose syntax. It does not perform
+AD domain join, provision applications, start Docker images, or deploy VMs.
