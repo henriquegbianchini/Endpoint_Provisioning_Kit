@@ -312,3 +312,18 @@ Then confirm that you are not committing:
 - no secrets in source control.
 
 This repository is a reusable endpoint-provisioning template, not a replacement for Intune, MECM/SCCM, GPO, RMM or a secrets-management platform.
+
+## Free AD + NOC home lab (VMs + Docker)
+
+See [docs/noc-lab-vm-docker.md](docs/noc-lab-vm-docker.md) for a **NOC-only** learning lab
+using a Samba Active Directory controller in a dedicated Debian VM, an Ubuntu
+Server VM running the [Zabbix + PostgreSQL + Uptime Kuma Docker Compose stack](docker/noc/compose.yaml),
+an optional Grafana OSS profile, plus Linux/Windows test endpoints.
+
+The lab is sized around **18 GiB of guest RAM** from an estimated 38 GiB free,
+but final sizing depends on host OS, storage and workload. Windows testing
+requires a valid license or permitted evaluation.
+
+Automated [read-only CI](.github/workflows/static-check.yml) runs EPK static
+validation, `VALIDATE`, `DRYRUN`, and checks Compose syntax. It does not perform
+AD domain join, provision applications, start Docker images, or deploy VMs.

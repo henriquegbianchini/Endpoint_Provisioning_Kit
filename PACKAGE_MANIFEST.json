@@ -1,7 +1,7 @@
 {
   "Package": "ENDPOINT-PROVISIONING-KIT",
   "Version": "1.0.0",
-  "GeneratedAt": "2026-08-19T17:26:00-03:00",
+  "GeneratedAt": "2026-10-21T16:00:00-03:00",
   "Root": "EndpointProvisioningKit",
   "Model": "Public-safe endpoint provisioning template with local defaults and explicit opt-in for environment-specific changes",
   "EntryPoint": "EndpointProvisioning.bat",
@@ -11,8 +11,6 @@
   "ContainsCompanyBranding": false,
   "SingleReadme": true,
   "Files": [
-    ".editorconfig",
-    ".gitattributes",
     ".github/workflows/static-check.yml",
     ".gitignore",
     "Assets/banner.txt",
@@ -48,11 +46,15 @@
     "PACKAGE_MANIFEST.json",
     "README.md",
     "Tests/Invoke-EndpointProvisioningStaticTests.ps1",
+    "docker/noc/.env.example",
+    "docker/noc/compose.yaml",
     "docs/images/dryrun-01.png",
     "docs/images/dryrun-02.png",
+    "docs/noc-lab-vm-docker.md",
     "docs/reports/WORKGROUP_LAB_DRYRUN_20250514_103015.html",
     "docs/reports/WORKGROUP_LAB_DRYRUN_20250514_103015.txt"
   ],
   "ContainsInstallerExamples": false,
-  "InstallerFolderOnly": true
+  "InstallerFolderOnly": true,
+  "ContainsNocDockerCompose": true
 }

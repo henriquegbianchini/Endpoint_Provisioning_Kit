@@ -1,0 +1,92 @@
+name: epk-noc-lab
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: zabbix
+      POSTGRES_USER: zabbix
+      POSTGRES_PASSWORD: ${NOC_POSTGRES_PASSWORD:?Set NOC_POSTGRES_PASSWORD in .env}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U zabbix -d zabbix"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - noc-backend
+
+  zabbix-server:
+    image: zabbix/zabbix-server-pgsql:alpine-7.0-latest
+    init: true
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DB_SERVER_HOST: postgres
+      POSTGRES_DB: zabbix
+      POSTGRES_USER: zabbix
+      POSTGRES_PASSWORD: ${NOC_POSTGRES_PASSWORD:?Set NOC_POSTGRES_PASSWORD in .env}
+      ZBX_CACHESIZE: 128M
+    ports:
+      # Keep loopback-only until networking/firewall is confirmed.
+      # For active agents, bind this service to the NOC VM's isolated LAN IP.
+      - "${NOC_AGENT_BIND_IP:-127.0.0.1}:10051:10051"
+    networks:
+      - noc-backend
+
+  zabbix-web:
+    image: zabbix/zabbix-web-nginx-pgsql:alpine-7.0-latest
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      zabbix-server:
+        condition: service_started
+    environment:
+      DB_SERVER_HOST: postgres
+      POSTGRES_DB: zabbix
+      POSTGRES_USER: zabbix
+      POSTGRES_PASSWORD: ${NOC_POSTGRES_PASSWORD:?Set NOC_POSTGRES_PASSWORD in .env}
+      ZBX_SERVER_HOST: zabbix-server
+      PHP_TZ: America/Sao_Paulo
+    ports:
+      - "${NOC_WEB_BIND_IP:-127.0.0.1}:8080:8080"
+    networks:
+      - noc-backend
+
+  uptime-kuma:
+    image: louislam/uptime-kuma:2
+    restart: unless-stopped
+    volumes:
+      - kuma-data:/app/data
+    ports:
+      - "${NOC_WEB_BIND_IP:-127.0.0.1}:3001:3001"
+    networks:
+      - noc-backend
+
+  grafana:
+    image: grafana/grafana:12.4.0
+    profiles: ["dashboards"]
+    restart: unless-stopped
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?Set GRAFANA_ADMIN_PASSWORD in .env}
+    volumes:
+      - grafana-data:/var/lib/grafana
+    ports:
+      - "${NOC_WEB_BIND_IP:-127.0.0.1}:3000:3000"
+    networks:
+      - noc-backend
+
+networks:
+  noc-backend:
+    driver: bridge
+
+volumes:
+  postgres-data:
+  kuma-data:
+  grafana-data:

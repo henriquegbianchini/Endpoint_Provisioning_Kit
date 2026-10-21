@@ -1,0 +1,41 @@
+name: EPK and NOC lab checks
+
+on:
+  push:
+    branches:
+      - main
+      - 'feat/**'
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  epk-read-only:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: powershell
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: PowerShell syntax, JSON, safe defaults
+        run: .\Tests\Invoke-EndpointProvisioningStaticTests.ps1
+
+      - name: Validate without provisioning
+        run: .\EndpointProvisioning.ps1 -Mode VALIDATE -Silent
+
+      - name: Dry-run without provisioning
+        run: .\EndpointProvisioning.ps1 -Mode DRYRUN -MachineType NOTE -Sector IT -Asset 0042 -Silent
+
+  docker-compose-config:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate NOC stack Compose configuration without deploying
+        run: docker compose --env-file docker/noc/.env.example -f docker/noc/compose.yaml config --quiet
