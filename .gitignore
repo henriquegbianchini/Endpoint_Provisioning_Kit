@@ -26,3 +26,6 @@ Certificates/*
 Thumbs.db
 *.bak
 *.tmp
+
+# Docker secrets and local NOC settings
+docker/noc/.env
