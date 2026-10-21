@@ -1,0 +1,28 @@
+# Local profiles, organization data and secrets
+Config/company.local.json
+Config/*.local.json
+Config/Companies/
+*.pfx
+*.p12
+*.pem
+*.key
+*.p8
+*.p7b
+*.p7c
+
+# Runtime evidence and user-specific content
+Runtime/
+Installers/*
+!Installers/.gitkeep
+Certificates/*
+!Certificates/.gitkeep
+*.log
+
+# Local editor/OS files
+.vs/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.bak
+*.tmp
