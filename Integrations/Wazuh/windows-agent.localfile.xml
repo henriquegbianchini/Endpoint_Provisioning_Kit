@@ -1,0 +1,6 @@
+<!-- Insert inside the existing <ossec_config> of the LAB Windows agent.
+     Adjust this location to match the actual EPK installation directory. -->
+<localfile>
+  <location>C:\Lab\Endpoint_Provisioning_Kit\Runtime\Logs\*.log</location>
+  <log_format>syslog</log_format>
+</localfile>
