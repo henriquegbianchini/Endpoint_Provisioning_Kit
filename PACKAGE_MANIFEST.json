@@ -28,9 +28,6 @@
     "EndpointProvisioning.bat",
     "EndpointProvisioning.ps1",
     "Installers/.gitkeep",
-    "Integrations/Wazuh/epk_decoders.xml",
-    "Integrations/Wazuh/epk_rules.xml",
-    "Integrations/Wazuh/windows-agent.localfile.xml",
     "Modules/EPK.Apps.psm1",
     "Modules/EPK.Backup.psm1",
     "Modules/EPK.Certificates.psm1",
@@ -49,14 +46,15 @@
     "PACKAGE_MANIFEST.json",
     "README.md",
     "Tests/Invoke-EndpointProvisioningStaticTests.ps1",
-    "Tests/Test-EpkWazuhIntegration.ps1",
-    "docs/free-noc-soc-lab.md",
+    "docker/noc/.env.example",
+    "docker/noc/compose.yaml",
     "docs/images/dryrun-01.png",
     "docs/images/dryrun-02.png",
+    "docs/noc-lab-vm-docker.md",
     "docs/reports/WORKGROUP_LAB_DRYRUN_20250514_103015.html",
     "docs/reports/WORKGROUP_LAB_DRYRUN_20250514_103015.txt"
   ],
   "ContainsInstallerExamples": false,
   "InstallerFolderOnly": true,
-  "ContainsWazuhIntegrationTemplates": true
+  "ContainsNocDockerCompose": true
 }
