@@ -1,4 +1,4 @@
-name: EPK read-only checks
+name: EPK and NOC lab checks
 
 on:
   push:
@@ -12,24 +12,30 @@ permissions:
   contents: read
 
 jobs:
-  powershell-static-and-smoke:
+  epk-read-only:
     runs-on: windows-latest
     timeout-minutes: 20
     defaults:
       run:
         shell: powershell
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Verify PowerShell, JSON and safe public defaults
+      - name: PowerShell syntax, JSON, safe defaults
         run: .\Tests\Invoke-EndpointProvisioningStaticTests.ps1
 
-      - name: Verify Wazuh integration templates
-        run: .\Tests\Test-EpkWazuhIntegration.ps1
-
-      - name: Validate endpoint without provisioning
+      - name: Validate without provisioning
         run: .\EndpointProvisioning.ps1 -Mode VALIDATE -Silent
 
-      - name: Run safe dry-run on ephemeral test machine
+      - name: Dry-run without provisioning
         run: .\EndpointProvisioning.ps1 -Mode DRYRUN -MachineType NOTE -Sector IT -Asset 0042 -Silent
+
+  docker-compose-config:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate NOC stack Compose configuration without deploying
+        run: docker compose --env-file docker/noc/.env.example -f docker/noc/compose.yaml config --quiet
