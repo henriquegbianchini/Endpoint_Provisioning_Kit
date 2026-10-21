@@ -1,7 +1,7 @@
 {
   "Package": "ENDPOINT-PROVISIONING-KIT",
   "Version": "1.0.0",
-  "GeneratedAt": "2026-08-19T17:26:00-03:00",
+  "GeneratedAt": "2026-10-21T16:00:00-03:00",
   "Root": "EndpointProvisioningKit",
   "Model": "Public-safe endpoint provisioning template with local defaults and explicit opt-in for environment-specific changes",
   "EntryPoint": "EndpointProvisioning.bat",
@@ -11,8 +11,6 @@
   "ContainsCompanyBranding": false,
   "SingleReadme": true,
   "Files": [
-    ".editorconfig",
-    ".gitattributes",
     ".github/workflows/static-check.yml",
     ".gitignore",
     "Assets/banner.txt",
@@ -30,6 +28,9 @@
     "EndpointProvisioning.bat",
     "EndpointProvisioning.ps1",
     "Installers/.gitkeep",
+    "Integrations/Wazuh/epk_decoders.xml",
+    "Integrations/Wazuh/epk_rules.xml",
+    "Integrations/Wazuh/windows-agent.localfile.xml",
     "Modules/EPK.Apps.psm1",
     "Modules/EPK.Backup.psm1",
     "Modules/EPK.Certificates.psm1",
@@ -48,11 +49,14 @@
     "PACKAGE_MANIFEST.json",
     "README.md",
     "Tests/Invoke-EndpointProvisioningStaticTests.ps1",
+    "Tests/Test-EpkWazuhIntegration.ps1",
+    "docs/free-noc-soc-lab.md",
     "docs/images/dryrun-01.png",
     "docs/images/dryrun-02.png",
     "docs/reports/WORKGROUP_LAB_DRYRUN_20250514_103015.html",
     "docs/reports/WORKGROUP_LAB_DRYRUN_20250514_103015.txt"
   ],
   "ContainsInstallerExamples": false,
-  "InstallerFolderOnly": true
+  "InstallerFolderOnly": true,
+  "ContainsWazuhIntegrationTemplates": true
 }
