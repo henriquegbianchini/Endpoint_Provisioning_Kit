@@ -1,0 +1,35 @@
+name: EPK read-only checks
+
+on:
+  push:
+    branches:
+      - main
+      - 'feat/**'
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  powershell-static-and-smoke:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: powershell
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify PowerShell, JSON and safe public defaults
+        run: .\Tests\Invoke-EndpointProvisioningStaticTests.ps1
+
+      - name: Verify Wazuh integration templates
+        run: .\Tests\Test-EpkWazuhIntegration.ps1
+
+      - name: Validate endpoint without provisioning
+        run: .\EndpointProvisioning.ps1 -Mode VALIDATE -Silent
+
+      - name: Run safe dry-run on ephemeral test machine
+        run: .\EndpointProvisioning.ps1 -Mode DRYRUN -MachineType NOTE -Sector IT -Asset 0042 -Silent
