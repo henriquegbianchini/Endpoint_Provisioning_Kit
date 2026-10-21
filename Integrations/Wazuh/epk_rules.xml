@@ -1,0 +1,22 @@
+<!-- Copy to /var/ossec/etc/rules/epk_rules.xml on your LAB manager. -->
+<group name="epk,endpoint,">
+  <rule id="100110" level="0">
+    <decoded_as>epk-log</decoded_as>
+    <description>EPK provisioning log event</description>
+  </rule>
+  <rule id="100111" level="8">
+    <if_sid>100110</if_sid>
+    <field name="epk.level" type="pcre2">^ERR$</field>
+    <description>EPK provisioning error: $(epk.message)</description>
+  </rule>
+  <rule id="100112" level="5">
+    <if_sid>100110</if_sid>
+    <field name="epk.level" type="pcre2">^WRN$</field>
+    <description>EPK provisioning warning: $(epk.message)</description>
+  </rule>
+  <rule id="100113" level="3">
+    <if_sid>100110</if_sid>
+    <field name="epk.level" type="pcre2">^OK$</field>
+    <description>EPK action completed: $(epk.message)</description>
+  </rule>
+</group>
