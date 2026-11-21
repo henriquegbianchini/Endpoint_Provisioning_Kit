@@ -1,0 +1,37 @@
+# Local configuration: never publish environment-specific profiles
+/Config/company.local.json
+/Config/*.local.json
+/Config/*.private.json
+
+# Runtime outputs can contain machine/user details
+/Runtime/
+/Logs/
+/Reports/
+/Evidence/
+/Backups/
+/Temp/
+
+# Private payloads; keep only empty directory placeholders
+/Installers/*
+!/Installers/.gitkeep
+/Certificates/*
+!/Certificates/.gitkeep
+
+# Secrets, local tools and temporary files
+.env
+.env.*
+!.env.example
+*.pfx
+*.p12
+*.pem
+*.key
+*.cer
+*.crt
+*.log
+*.tmp
+*.bak
+*.zip
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
