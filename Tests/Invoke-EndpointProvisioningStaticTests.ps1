@@ -103,4 +103,35 @@ if (Test-Path -LiteralPath (Join-Path $Root '.git') -PathType Container) {
     Write-EpkStaticOk 'git diff --check'
 }
 
+# Check that the published file manifest actually matches this repository.
+$manifest = Get-Content -LiteralPath (Join-Path $Root 'PACKAGE_MANIFEST.json') -Raw -Encoding UTF8 | ConvertFrom-Json
+$missingManifestPaths = @(
+    foreach ($entry in @($manifest.Files)) {
+        $path = Join-Path $Root ([string]$entry)
+        if (-not (Test-Path -LiteralPath $path -PathType Leaf)) { [string]$entry }
+    }
+)
+Assert-EpkStatic -Condition ($missingManifestPaths.Count -eq 0) -Message ('Manifest references missing files: ' + ($missingManifestPaths -join ', '))
+Write-EpkStaticOk 'Manifest paths exist'
+
+# Public defaults must be inert; operational mode requires deliberate configuration.
+$publicProfile = Get-Content -LiteralPath (Join-Path $Root 'Config/company.json') -Raw -Encoding UTF8 | ConvertFrom-Json
+Assert-EpkStatic -Condition (-not [bool]$publicProfile.Apps.InstallDefaultApps) -Message 'Public profile unexpectedly enables application installation'
+Assert-EpkStatic -Condition (-not [bool]$publicProfile.Certificates.Install) -Message 'Public profile unexpectedly enables certificate installation'
+Assert-EpkStatic -Condition (-not [bool]$publicProfile.Domain.Join.Enabled) -Message 'Public profile unexpectedly enables domain joining'
+Assert-EpkStatic -Condition (-not [bool]$publicProfile.Runtime.AutoRebootIfNeeded) -Message 'Public profile unexpectedly enables automatic reboot'
+Write-EpkStaticOk 'Public profile disables operational changes by default'
+
+foreach ($readOnlyMode in @('VALIDATE', 'AUDIT', 'REPORT', 'DRYRUN', 'HASHES')) {
+    $mainContext.Session.Mode = $readOnlyMode
+    Assert-EpkStatic -Condition ([bool](Test-EpkReadOnlyMode -Context $mainContext)) -Message ("Mode {0} is not marked read-only" -f $readOnlyMode)
+}
+Write-EpkStaticOk 'Read-only modes are marked read-only'
+
+# Check source-control exclusions without executing provisioning code.
+foreach ($expectedIgnore in @('/Runtime/', '/Installers/*', '/Certificates/*', '/Config/company.local.json')) {
+    Assert-EpkStatic -Condition ($gitIgnore.Contains($expectedIgnore)) -Message ("Missing .gitignore entry: {0}" -f $expectedIgnore)
+}
+Write-EpkStaticOk 'Local files, payloads and runtime outputs are ignored'
+
 Write-Host 'Endpoint Provisioning Kit static tests completed successfully.' -ForegroundColor Green
