@@ -1,0 +1,22 @@
+name: PowerShell static checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-check:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: powershell
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Validate public templates and PowerShell syntax
+        run: .\Tests\Invoke-EndpointProvisioningStaticTests.ps1
