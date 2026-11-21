@@ -2,6 +2,9 @@
 
 **Version 1.0.0**
 
+[![Windows PowerShell static checks](https://github.com/henriquegbianchini/Endpoint_Provisioning_Kit/actions/workflows/static-check.yml/badge.svg)](https://github.com/henriquegbianchini/Endpoint_Provisioning_Kit/actions/workflows/static-check.yml)
+
+
 Endpoint Provisioning Kit (EPK) is a modular PowerShell template for preparing, validating and auditing Windows endpoints.
 
 The public repository is intentionally environment-neutral. It runs in **WORKGROUP/local mode by default**, installs no applications, installs no certificates and does not require Active Directory to validate or test the project.
