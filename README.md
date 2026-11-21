@@ -68,6 +68,12 @@ A domain join requires both the configuration to explicitly enable it **and** th
 
 Active Directory, private DNS, installers and certificates are optional integrations, not requirements for the template itself.
 
+## Verification
+
+The [Windows static-check workflow](.github/workflows/static-check.yml) runs on pushes to `main` and pull requests. It checks JSON parsing, PowerShell syntax, the public configuration, repository file manifest and exclusions for local data. The checks **do not** validate live domain joining, installations, certificate deployment or performance in production.
+
+The repository ships no installers, private certificates or company-specific configuration. Use test machines and review the configuration before running `COMPLETE` or `APPLY`.
+
 ## Quick start
 
 Run the static checks:
@@ -232,17 +238,17 @@ Credentials are requested interactively. Do not store credentials in JSON, scrip
 
 | Mode | Changes Windows? | Purpose |
 |---|---:|---|
-| `VALIDATE` | No | Validate structure, configuration and prerequisites. |
-| `DRYRUN` | No | Simulate the provisioning workflow. |
-| `AUDIT` | No | Collect endpoint state and generate reports. |
-| `REPORT` | No | Audit-oriented report mode. |
-| `HASHES` | No | Validate installer paths and hash catalog. |
+| `VALIDATE` | No endpoint changes | Validate structure, configuration and prerequisites. |
+| `DRYRUN` | No endpoint changes | Simulate the provisioning workflow. |
+| `AUDIT` | No endpoint changes | Collect endpoint state and generate reports. |
+| `REPORT` | No endpoint changes | Audit-oriented report mode. |
+| `HASHES` | No endpoint changes | Validate installer paths and hash catalog. |
 | `UPDATEHASHES` | Config only | Recalculate approved installer hashes. |
 | `GENERATEHASHES` | Config only | Alias for hash catalog generation/update. |
 | `COMPLETE` | Yes | Apply the configured provisioning workflow. |
 | `APPLY` | Yes | Alias for `COMPLETE`. |
 
-Use `VALIDATE` and `DRYRUN` before `COMPLETE`/`APPLY`.
+Use `VALIDATE` and `DRYRUN` before `COMPLETE`/`APPLY`. Read-only modes do not install applications, rename the computer or join a domain, but they **can write local logs, reports and evidence files**.
 
 ## Generated files
 
@@ -266,12 +272,15 @@ Runtime/Reports/WORKGROUP_LAB_DRYRUN_YYYYMMDD_HHMMSS.html
 Runtime/Evidence/EVIDENCE_WORKGROUP_LAB_DRYRUN_YYYYMMDD_HHMMSS.zip
 ```
 
-Runtime output is ignored by Git. The files under `docs/reports/` are intentionally committed **sample outputs** for the public repository.
+Runtime output is ignored by Git. The files under `docs/reports/` are intentionally committed **sample outputs** for the public repository. Evidence archives can include configuration, hostname, IP address and user details; review and sanitize them before sharing. A `.gitignore` is not a substitute for checking files before publishing.
 
 ## Repository structure
 
 ```text
 .
+├─ .editorconfig
+├─ .gitattributes
+├─ .gitignore
 ├─ .github/workflows/static-check.yml
 ├─ Assets/
 ├─ Certificates/
